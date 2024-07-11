@@ -11,14 +11,23 @@ public class dialogueScript : MonoBehaviour
     private string[] lines;
     [SerializeField]
     private float textSpeed = 1f;
+    [SerializeField]
+    private AudioSource audioSource;
+    [SerializeField]
+    private AudioClip clickSound;
 
    
-    private int index;   
+    private int index;
+
+    [HideInInspector]
+    public bool isActive; 
   
     void Start()
     {
         dialogueText.text = string.Empty;
-        StartDialogue(); 
+        //StartDialogue(); 
+        gameObject.SetActive(false);
+        isActive = true;
     }
 
     void Update()
@@ -47,7 +56,7 @@ public class dialogueScript : MonoBehaviour
         foreach (char letter in lines[index].ToCharArray()) 
         {
             dialogueText.text += letter;
-
+            audioSource.PlayOneShot(clickSound);
             yield return new WaitForSeconds(textSpeed);
         }
 
@@ -63,7 +72,7 @@ public class dialogueScript : MonoBehaviour
         } else
         {
             gameObject.SetActive(false);
-
+            isActive = false;
         }
     }
 
