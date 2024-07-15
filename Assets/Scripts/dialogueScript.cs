@@ -2,20 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UIElements;
+using System.Net.Http.Headers;
 
 public class dialogueScript : MonoBehaviour
 {
+    private const string STORYTELLER = "storyteller", TUX = "tux", GNU = "gnu", WINDOWS = "windows", MACOS = "macos";
+
+    private enum Sounds
+    {
+        Storyteller,
+        Tux,
+        Gnu,
+        Windows,
+        Macos
+    }
+
+    [SerializeField]
+    private string[] lines;
+    [SerializeField]
+    private string[] owners;
+    [SerializeField]
+    private AudioClip[] audioSources;
+
     [SerializeField]
     private TextMeshProUGUI dialogueText;
     [SerializeField]
-    private string[] lines;
+    private TextMeshProUGUI dialogueOwner;
     [SerializeField]
     private float textSpeed = 1f;
     [SerializeField]
     private AudioSource audioSource;
-    [SerializeField]
-    private AudioClip clickSound;
-
    
     private int index;
 
@@ -53,10 +70,35 @@ public class dialogueScript : MonoBehaviour
 
     IEnumerator WriteLine()
     {
+
+        int sound;
+
+        switch(owners[index].ToLower())
+        {
+            case STORYTELLER:
+                dialogueOwner.text = "Storyteller";
+                sound = (int)Sounds.Storyteller;
+                break;
+            case TUX:
+                dialogueOwner.text = "Tux";
+                sound = (int)Sounds.Tux;
+                break;
+            case GNU:
+                dialogueOwner.text = "Gnu";
+                sound = (int)Sounds.Gnu;
+                break;
+
+            default:
+                dialogueOwner.text = "Storyteller";
+                sound = (int)Sounds.Storyteller;
+                break;
+        }
+
         foreach (char letter in lines[index].ToCharArray()) 
         {
             dialogueText.text += letter;
-            audioSource.PlayOneShot(clickSound);
+            //audioSource.PlayOneShot(clickSound);
+            audioSource.PlayOneShot(audioSources[sound]);
             yield return new WaitForSeconds(textSpeed);
         }
 

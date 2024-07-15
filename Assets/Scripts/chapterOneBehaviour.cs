@@ -2,13 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class sceneBehaviour : MonoBehaviour
+public class chapterOneBehaviour : MonoBehaviour
 {
     [SerializeField]
     private dialogueScript dialogueScript;
-
-    [SerializeField]
-    private mainMenuScript mainMenuScript;
 
     void Start()
     {
@@ -17,16 +14,12 @@ public class sceneBehaviour : MonoBehaviour
 
     IEnumerator manageScene()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(10); // The title fade-in-out animation has 8s duration
 
         print(dialogueScript.isActive);
         dialogueScript.gameObject.SetActive(true);
         dialogueScript.StartDialogue();
-        
-        yield return new WaitUntil(() => !dialogueScript.isActive);
 
-        mainMenuScript.gameObject.GetComponent<Animator>().SetBool("activeMenu", true); 
-        mainMenuScript.gameObject.SetActive(true);
+
     }
-
 }
