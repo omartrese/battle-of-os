@@ -1,19 +1,18 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.UIElements;
-using System.Net.Http.Headers;
+using UnityEngine.UI;
 
 public class dialogueScript : MonoBehaviour
 {
-    private const string STORYTELLER = "storyteller", TUX = "tux", GNU = "gnu", WINDOWS = "windows", MACOS = "macos";
+    private const string STORYTELLER = "storyteller", TUX = "tux", GNU = "gnu", WIN_DEFENDER = "windefender", WINDOWS = "windows", MACOS = "macos";
 
-    private enum Sounds
+    private enum Characters
     {
         Storyteller,
         Tux,
         Gnu,
+        WinDefender,
         Windows,
         Macos
     }
@@ -23,7 +22,9 @@ public class dialogueScript : MonoBehaviour
     [SerializeField]
     private string[] owners;
     [SerializeField]
-    private AudioClip[] audioSources;
+    private AudioClip[] audioClips;
+    [SerializeField]
+    private Sprite[] ownerSprites;
 
     [SerializeField]
     private TextMeshProUGUI dialogueText;
@@ -33,6 +34,10 @@ public class dialogueScript : MonoBehaviour
     private float textSpeed = 1f;
     [SerializeField]
     private AudioSource audioSource;
+    [SerializeField]
+    private Image ownerImage;
+
+
    
     private int index;
 
@@ -77,20 +82,45 @@ public class dialogueScript : MonoBehaviour
         {
             case STORYTELLER:
                 dialogueOwner.text = "Storyteller";
-                sound = (int)Sounds.Storyteller;
+
+                sound = (int)Characters.Storyteller;
+
+                ownerImage.gameObject.SetActive(false);
                 break;
+
             case TUX:
                 dialogueOwner.text = "Tux";
-                sound = (int)Sounds.Tux;
+                
+                sound = (int)Characters.Tux;
+
+                ownerImage.gameObject.SetActive(true);
+                ownerImage.sprite = ownerSprites[(int)Characters.Tux - 1];
                 break;
+                
             case GNU:
                 dialogueOwner.text = "Gnu";
-                sound = (int)Sounds.Gnu;
+
+                sound = (int)Characters.Gnu;
+
+                ownerImage.gameObject.SetActive(true);
+                ownerImage.sprite = ownerSprites[(int)Characters.Gnu - 1];
+                break;
+
+            case WIN_DEFENDER:
+                dialogueOwner.text = "Windows Defender";
+
+                sound = (int)Characters.WinDefender;
+
+                ownerImage.gameObject.SetActive(true);
+                ownerImage.sprite = ownerSprites[(int)Characters.WinDefender - 1];
                 break;
 
             default:
                 dialogueOwner.text = "Storyteller";
-                sound = (int)Sounds.Storyteller;
+
+                sound = (int)Characters.Storyteller;
+
+                ownerImage.gameObject.SetActive(false);
                 break;
         }
 
@@ -98,7 +128,7 @@ public class dialogueScript : MonoBehaviour
         {
             dialogueText.text += letter;
             //audioSource.PlayOneShot(clickSound);
-            audioSource.PlayOneShot(audioSources[sound]);
+            audioSource.PlayOneShot(audioClips[sound]);
             yield return new WaitForSeconds(textSpeed);
         }
 
