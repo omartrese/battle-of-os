@@ -313,7 +313,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 138061892}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 137db336287d08a4c8cdd6ca77481462, type: 3}
+  m_Script: {fileID: 11500000, guid: 24a3ef6323365494bb1a88946e5db7d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueScript: {fileID: 1141130419}
@@ -562,7 +562,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &951738802
 RectTransform:
   m_ObjectHideFlags: 0
@@ -855,28 +855,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lines:
-  - "En la pac\xEDfica comunidad de Software Libre, un d\xEDa normal se convierte
-    en un caos cuando llega una terrible noticia. "
-  - "Las fuerzas de Windows y Mac han comenzado su invasi\xF3n. "
-  - Tux, necesitamos tu ayuda.
-  - "Las fuerzas de Windows est\xE1n tomando el control de los servidores y Mac est\xE1
-    cerrando el acceso a los recursos compartidos."
-  - "No podemos permitir que esto suceda. Nuestra comunidad depende de la libertad
-    y la colaboraci\xF3n."
-  - "\xA1Vamos a luchar por nuestro derecho a existir libremente!"
-  - "Gracias a Tux y su compa\xF1ero GNU el mundo del software libre ten\xEDa una
-    esperanza"
-  - "Y as\xED, empez\xF3 su viaje en busca de detener los planes del software privativo
-    por parte de Windows y MacOS"
+  - Tux se dirige al primer campo de batalla, donde encuentra a Windows Defender
+    bloqueando el acceso a importantes repositorios.
+  - "\xA1Detente ah\xED, Tux! Este es territorio de Windows ahora. Nadie puede pasar
+    sin nuestra autorizaci\xF3n."
+  - "No puedes detenerme, Defender. La libertad de acceso es un derecho de todos.
+    Prep\xE1rate para luchar."
   owners:
   - storyteller
-  - storyteller
-  - gnu
-  - gnu
+  - windefender
   - tux
-  - tux
-  - storyteller
-  - storyteller
   audioClips:
   - {fileID: 8300000, guid: 2d55441f4f218ca45a3eb0437105f0c6, type: 3}
   - {fileID: 8300000, guid: 92f9d154b8de77d49aaac192d54ed315, type: 3}
