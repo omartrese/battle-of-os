@@ -21,9 +21,7 @@ public class chatperTwoBehaviour : MonoBehaviour
         dialogueScript.gameObject.SetActive(true);
         dialogueScript.StartDialogue();
         yield return new WaitUntil(() => !dialogueScript.isActive);
-
-        //SceneManager.LoadScene(2); //Load chapter 2
-        //SceneManager.LoadScene(2); //Load chapter 2
+        SceneManager.LoadScene(3); // Load Chapter two match (first game combat)
 
     }
 }
