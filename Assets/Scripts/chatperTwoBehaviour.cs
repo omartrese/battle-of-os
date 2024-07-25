@@ -15,7 +15,7 @@ public class chatperTwoBehaviour : MonoBehaviour
 
     IEnumerator manageScene()
     {
-        yield return new WaitForSeconds(2); // The title fade-in-out animation has 8s duration
+        yield return new WaitForSeconds(2); 
 
         print(dialogueScript.isActive);
         dialogueScript.gameObject.SetActive(true);
